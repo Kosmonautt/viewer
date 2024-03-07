@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clicksmile</title>
+    <!-- Favicon -->
+    <link href="https://assets-global.website-files.com/65dc90a3d6ad0916a4c9e0ce/65dfaead68c4ca101a2f4b04_ico2.png" rel="shortcut icon" type="image/x-icon">
+    <style>
+        body { 
+        margin: 0;
+        }
+
+        canvas { display: block; }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* adjust as needed */
+            background-color: rgba(232, 239, 255, 0.5);
+            backdrop-filter: blur(20px);
+            padding: 14px 12px; /* adjust as needed */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+    
+        .click-smile-logo {
+            width: 180px; /* adjust as needed */
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4684FE;
+            border: none;
+            border-radius: 10px;
+            /* smooth shadow */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+            }
+
+        .button:hover {background-color: #4684FE}
+
+        .button:active {
+        background-color: #4684FE;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.138.0/build/three.module.js",
+                "plyloader": "https://unpkg.com/three@0.138.0/examples/jsm/loaders/PLYLoader.js",
+                "orbitcontrols": "https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js"
+            }
+        }
+    </script>
+    <script type="module" src="/static/app.js"></script>
+        <div class="button-container">
+            <img src="https://assets-global.website-files.com/65dc90a3d6ad0916a4c9e0ce/65df9f6d48ca2ddfb3edee90_Copy%20of%20click%20smile%20logo%20full%20color.svg" alt="Icon" class="click-smile-logo">
+            <button class ="button" id="downloadModel1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffffff" viewBox="0 0 256 256"><path d="M224,152v56a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V152a8,8,0,0,1,16,0v56H208V152a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,132.69V40a8,8,0,0,0-16,0v92.69L93.66,106.34a8,8,0,0,0-11.32,11.32Z"></path></svg>
+                <span id = "button1Text"> Descargar mandíbula  </span> 
+            </button>
+            <button class ="button" id="downloadModel2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffffff" viewBox="0 0 256 256"><path d="M224,152v56a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V152a8,8,0,0,1,16,0v56H208V152a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,132.69V40a8,8,0,0,0-16,0v92.69L93.66,106.34a8,8,0,0,0-11.32,11.32Z"></path></svg>
+                <span id = "button2Text"> Descargar maxilar  </span> 
+            </button>
+        </div>
+</body>
+</html>
