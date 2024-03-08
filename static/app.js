@@ -23,61 +23,121 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.update(); 
 
-const ambientLight = new THREE.AmbientLight(0xffffff); 
+var light_color = 0xe0d3d1;
+
+// AMBIENT LIGHT
+const ambientLight = new THREE.AmbientLight(light_color);
 scene.add(ambientLight);
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-directionalLight.position.set(0, 0, 1e8);
-scene.add(directionalLight);
+
+// RECT LIGHT 1
+const rect_width_1 = 400;
+const rect_height_1 = 400;
+const rect_intensity_1 = 0.5;
+const rect_light_1 = new THREE.RectAreaLight(
+  light_color,
+  rect_intensity_1,
+  rect_width_1,
+  rect_height_1
+);
+rect_light_1.position.set(0, 0, 100);
+rect_light_1.lookAt(0, 0, 0);
+scene.add(rect_light_1);
+
+// RECT LIGHT 2
+const rect_width_2 = 400;
+const rect_height_2 = 400;
+const rect_intensity_2 = 1;
+const rect_light_2 = new THREE.RectAreaLight(
+  light_color,
+  rect_intensity_2,
+  rect_width_2,
+  rect_height_2
+);
+rect_light_2.position.set(0, 0, -100);
+rect_light_2.lookAt(0, 0, 0);
+scene.add(rect_light_2);
+
+// RECT LIGHT 3
+const rect_width_3 = 400;
+const rect_height_3 = 400;
+const rect_intensity_3 = 0.8;
+const rect_light_3 = new THREE.RectAreaLight(
+  light_color,
+  rect_intensity_3,
+  rect_width_3,
+  rect_height_3
+);
+rect_light_3.position.set(100, 0, 0);
+rect_light_3.lookAt(0, 0, 0);
+scene.add(rect_light_3);
+
+// RECT LIGHT 4
+const rect_width_4 = 400;
+const rect_height_4 = 400;
+const rect_intensity_4 = 0.8;
+const rect_light_4 = new THREE.RectAreaLight(
+  light_color,
+  rect_intensity_4,
+  rect_width_4,
+  rect_height_4
+);
+rect_light_4.position.set(-100, 0, 0);
+rect_light_4.lookAt(0, 0, 0);
+scene.add(rect_light_4);
 
 var center = new THREE.Vector3(0, 0, 0);
 
 const loader = new PLYLoader();
 loader.load(
-    model1url,
-    function (geometry) {
-        geometry.computeVertexNormals();
-        const material = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors , side: THREE.DoubleSide});
-        const plyMesh = new THREE.Mesh(geometry, material);
+  model1url,
+  function (geometry) {
+    geometry.computeVertexNormals();
+    const material = new THREE.MeshStandardMaterial({
+      vertexColors: THREE.VertexColors,
+      side: THREE.DoubleSide,
+    });
+    const plyMesh = new THREE.Mesh(geometry, material);
 
-        geometry.computeBoundingBox();
-        center = geometry.boundingBox.getCenter(center);
-        geometry.boundingBox.getCenter(plyMesh.position).multiplyScalar(-1);
-        
-        scene.add(plyMesh);
-        camera.position.z = 100;
-        controls.update(); 
-    },
-    function (xhr) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-    },
-    function (error) {
-        console.error('An error happened', error);
-    }
+    geometry.computeBoundingBox();
+    center = geometry.boundingBox.getCenter(center);
+    geometry.boundingBox.getCenter(plyMesh.position).multiplyScalar(-1);
+
+    scene.add(plyMesh);
+    camera.position.z = 100;
+    controls.update();
+  },
+  function (xhr) {
+    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+  },
+  function (error) {
+    console.error("An error happened", error);
+  }
 );
 
 const loader2 = new PLYLoader();
 loader2.load(
-    model2url,
-    function (geometry) {
-        geometry.computeVertexNormals();
-        const material = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors, side: THREE.DoubleSide });
-        const plyMesh = new THREE.Mesh(geometry, material);
+  model2url,
+  function (geometry) {
+    geometry.computeVertexNormals();
+    const material = new THREE.MeshStandardMaterial({
+      vertexColors: THREE.VertexColors,
+      side: THREE.DoubleSide,
+    });
+    const plyMesh = new THREE.Mesh(geometry, material);
 
-        geometry.computeBoundingBox();
-        plyMesh.position.set(-center.x, -center.y, -center.z);
+    geometry.computeBoundingBox();
+    plyMesh.position.set(-center.x, -center.y, -center.z);
 
-
-        
-        scene.add(plyMesh);
-        camera.position.z = 100;
-        controls.update(); 
-    },
-    function (xhr) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-    },
-    function (error) {
-        console.error('An error happened', error);
-    }
+    scene.add(plyMesh);
+    camera.position.z = 100;
+    controls.update();
+  },
+  function (xhr) {
+    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+  },
+  function (error) {
+    console.error("An error happened", error);
+  }
 );
 
 
